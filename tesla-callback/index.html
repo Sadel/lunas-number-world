@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head><title>Tesla Auth</title></head>
+<body style="font-family:system-ui;display:flex;align-items:center;justify-content:center;height:100vh;margin:0;background:#1a1a2e;color:#e0e0e0;">
+<div style="text-align:center;max-width:600px;padding:20px;">
+<h1>Tesla Authorization</h1>
+<div id="result"></div>
+<script>
+const params = new URLSearchParams(window.location.search);
+const code = params.get('code');
+const el = document.getElementById('result');
+if (code) {
+  el.innerHTML = '<p style="color:#4ade80;font-size:20px;">Authorization code received!</p>' +
+    '<p>Copy this code and send it to the WhatsApp bot:</p>' +
+    '<pre style="background:#2a2a4a;padding:16px;border-radius:8px;word-break:break-all;user-select:all;cursor:pointer;font-size:14px;">' + code + '</pre>' +
+    '<p style="color:#94a3b8;font-size:14px;">Click the code to select it, then copy and paste it to WhatsApp.</p>';
+} else {
+  el.innerHTML = '<p style="color:#f87171;">No authorization code found. Something went wrong.</p>' +
+    '<p style="color:#94a3b8;">Error: ' + (params.get('error') || 'unknown') + '</p>';
+}
+</script>
+</div>
+</body>
+</html>
